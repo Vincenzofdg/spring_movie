@@ -1,5 +1,6 @@
 package com.br.study.movies;
 
+import com.br.study.movies.service.IMDB;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,7 +13,9 @@ public class MoviesApplication implements CommandLineRunner {
 	}
 
 	@Override
-	public void run(String... args) throws Exception {
-		System.out.println("end of class");
+	public void run(String... args) {
+		IMDB getDataFromApi = new IMDB();
+		var json = getDataFromApi.fetchApiData("http://www.omdbapi.com/?t=the+boys&Season=1&apikey=89fb62ff");
+		System.out.println(json);
 	}
 }
